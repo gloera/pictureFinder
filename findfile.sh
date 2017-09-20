@@ -1,5 +1,7 @@
 #!/bin/bash
 
+counter=0
+
 usage() { echo "Usage: $0 [-s search path ] [ -d destination path ]  <-w <min width>> <-h <min height> <-m search by model>" 1>&2; exit 1; }
 
 while getopts ":s:d:mw::h::" o; do
@@ -30,9 +32,6 @@ if [ -z "${SEARCHPATH}" ] || [ -z "${IMAGEPATH}" ]; then
     usage
 fi
 
-#IMAGEPATH="/media/sf_D_DRIVE/.private/capturedpics/"
-#IMAGEPATH="/media/rv/37b22a41-ce6d-44e3-b786-74c7d4b21bf5/captured_pics/"
-counter=0
 TMP=`find $SEARCHPATH -type f -print 2> /dev/null | egrep -i "\.(jpg|png|gif)$"`
 if [ $? -eq 0 ] ; then
    echo "${TMP}" | while read x
